@@ -13,22 +13,24 @@ PATH_NUMBER = os.path.join('Workspace', 'Number.json')
 
 
 async def cmd_start(message: Message):
-    await message.answer('Отправьте фото', reply_markup=client_kb)
+    await message.answer('Отправьте фото\nВ одном сообщении - одно фото', reply_markup=client_kb)
     await message.delete()
 
 
 async def save_photo(message: Message):
-    for img in message.photo:
+    with open(PATH_NUMBER, 'r') as file:
+        number = json.load(file)
 
-        with open(PATH_NUMBER, 'r') as file:
-            number = json.load(file)
+    name = os.path.join(PATH_DATA, f'{number}.png')
 
-        name = os.path.join(PATH_DATA, f'{number}.png')
-        await img.download(name)
+    if message.content_type == 'photo':
+        await message.photo[-1].download(name)
+    elif message.content_type == 'document':
+        await message.document.download(name)
 
-        number += 1
-        with open(PATH_NUMBER, 'w') as file:
-            json.dump(number, file)
+    number += 1
+    with open(PATH_NUMBER, 'w') as file:
+        json.dump(number, file)
 
 
 async def delete_message(message: Message):
@@ -41,5 +43,8 @@ def register_client_router(dp: Dispatcher):
 
     dp.register_message_handler(cmd_start,
                                 commands=['help'])
+
+    dp.register_message_handler(save_photo,
+                                content_types=['photo', 'document'])
 
     dp.register_message_handler(delete_message)
