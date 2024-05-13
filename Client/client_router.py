@@ -18,19 +18,12 @@ async def cmd_start(message: Message):
 
 
 async def save_photo(message: Message):
-    with open(PATH_NUMBER, 'r') as file:
-        number = json.load(file)
-
-    name = os.path.join(PATH_DATA, f'{number}.png')
+    name = os.path.join(PATH_DATA, f'{message.photo[-1].file_unique_id}.png')
 
     if message.content_type == 'photo':
         await message.photo[-1].download(name)
     elif message.content_type == 'document':
         await message.document.download(name)
-
-    number += 1
-    with open(PATH_NUMBER, 'w') as file:
-        json.dump(number, file)
 
 
 async def delete_message(message: Message):
