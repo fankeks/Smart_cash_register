@@ -1,11 +1,10 @@
 from aiogram.utils import executor
 from aiogram.types import BotCommand
 import os
-import json
 
 from create_bot import ans
 from Client.client_router import register_client_router
-from Client.client_router import PATH_WORKSPACE, PATH_NUMBER, PATH_DATA
+from Client.client_router import PATH_WORKSPACE
 
 
 def create_workspace():
@@ -13,18 +12,6 @@ def create_workspace():
         os.mkdir(PATH_WORKSPACE)
     except:
         pass
-
-    try:
-        os.mkdir(PATH_DATA)
-    except:
-        pass
-
-    try:
-        file = open(PATH_NUMBER, 'r')
-        file.close()
-    except:
-        with open(PATH_NUMBER, 'w') as file:
-            json.dump(1, file)
 
 
 if ans:
