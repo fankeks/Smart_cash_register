@@ -13,7 +13,7 @@ class PhotoHandler(IPhotoHandler):
     def f(path):
         neural_network = NeuralNetwork()
         ans = neural_network.get_report(path)
-
+        print(ans)
         with open(path.split('.')[0] + '.json', 'w') as file:
             json.dump(ans, file)
         return None
