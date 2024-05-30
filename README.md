@@ -1,7 +1,7 @@
 # Examples  
-![ex1](Examples/1.png)  
-![ex2](Examples/2.png)  
-![ex3](Examples/4.png)  
+![ex1](Examples/1.jpg)  
+![ex2](Examples/2.jpg)  
+![ex3](Examples/3.jpg)  
 # Libraris  
 To install all libraries:
 <pre><code>pip install -r requirements.txt</code></pre>  
