@@ -13,7 +13,18 @@ extensions = ['png',
 
 
 async def cmd_start(message: Message):
-    await message.answer('Отправьте фото\nВ одном сообщении - одно фото', reply_markup=client_kb)
+    await message.answer('''Отправьте фото\nВ одном сообщении - одно фото.
+Классы:
+1)  Baked chicken
+2)  Black bread
+3)  Cheese soup
+4)  Compote
+5)  Fish cutlet
+6)  Kharcho
+7)  Mashed potatoes
+8)  Meat cutlet
+9)  Rice
+10) White bread''', reply_markup=client_kb)
     await message.delete()
 
 
