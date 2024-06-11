@@ -4,9 +4,13 @@ import cv2
 import os
 from ultralytics.utils.plotting import Annotator
 
+
+NEURAL_NETWORK_NAME = f"best_1280_1.pt"
+
+
 class NeuralNetwork(INeuralNetwork):
     def __init__(self):
-        self.model=YOLO(f"best.pt")
+        self.model=YOLO(NEURAL_NETWORK_NAME)
 
     def get_report(self, path) -> list:
 

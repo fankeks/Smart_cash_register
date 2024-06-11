@@ -1,3 +1,4 @@
 aiogram==2.25
 ultralytics==8.0.196
 opencv-python
+seaborn
