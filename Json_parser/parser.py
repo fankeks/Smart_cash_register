@@ -12,6 +12,7 @@ if __name__ == '__main__':
     ans = [int(x["date_unixtime"]) for x in ans["messages"]]
     ans = np.array(ans[1:])
     ans = sorted(np.diff(ans))
+    print(len(ans))
 
     print("Среднее:")
     print(np.mean(ans))

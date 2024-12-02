@@ -5,6 +5,7 @@ import os
 
 
 from Neural_network.NeuralNetwork import NeuralNetwork
+from Neural_network.NeuralNetwork import d_translator
 from Photo_handler.IPhotoHandler import IPhotoHandler
 
 

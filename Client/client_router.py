@@ -15,16 +15,16 @@ extensions = ['png',
 async def cmd_start(message: Message):
     await message.answer('''Отправьте фото\nВ одном сообщении - одно фото.
 Классы:
-1)  Baked chicken
-2)  Black bread
-3)  Cheese soup
-4)  Compote
-5)  Fish cutlet
-6)  Kharcho
-7)  Mashed potatoes
-8)  Meat cutlet
-9)  Rice
-10) White bread''', reply_markup=client_kb)
+1) Запеченная курица
+2) Черный хлеб
+3) Сырный суп
+4) Компот
+5) Рыбные котлеты
+6) Харчо
+7) Картофельное пюре
+8) Мясные котлеты
+9) Рис
+10) Белый хлеб''', reply_markup=client_kb)
     await message.delete()
 
 
@@ -48,12 +48,16 @@ async def save_photo(message: Message):
     await process.start()
     ans = await process.join()
 
+    ans_message = ''
+    for product in ans:
+        ans_message += f'{product[0]} - {product[1]} шт.\n'
+
     # TODO:
     # Добавить базу данных с ценами на продукты
 
     photo = open(name, 'rb')
     await message.answer_photo(photo)
-    await message.answer(f"{ans}")
+    await message.answer(f"{ans_message}")
     os.remove(name)
 
 

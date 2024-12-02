@@ -1,4 +1,4 @@
 aiogram==2.25
-ultralytics==8.0.196
-opencv-python
-seaborn
+ultralytics==8.2.85
+opencv-python==4.9.0.80
+seaborn==0.13.2

@@ -2,7 +2,20 @@ from Neural_network.INeuralNetwork import INeuralNetwork
 from ultralytics import YOLO
 import cv2
 import os
-from ultralytics.utils.plotting import Annotator
+from  Neural_network.Anatator import MyAnnotator
+
+
+d_translator = {'Baked chicken': 'Запеченная курица',
+     'Black bread': 'Чёрный хлеб',
+     'Cheese soup' : 'Сырный суп',
+     'Compote' : 'Компот',
+     'Fish cutlet': 'Рыбные котлеты',
+     'Kharcho':  'Харчо',
+     'Mashed potatoes': "Картофельное пюре",
+     'Meat cutlet': 'Мясные котлеты',
+     'Rice': 'Рис',
+     'White bread': 'Белый хлеб',
+     }
 
 
 NEURAL_NETWORK_NAME = f"best_1280_1.pt"
@@ -18,13 +31,13 @@ class NeuralNetwork(INeuralNetwork):
 
         results = self.model.predict(img)  # results list
 
-        annotator = Annotator(img)
+        annotator = MyAnnotator(img)
 
         boxes = results[0].boxes
         for box in boxes:
             b = box.xyxy[0]  # get box coordinates in (left, top, right, bottom) format
             c = box.cls
-            annotator.box_label(b, self.model.names[int(c)])
+            annotator.box_label(b, label=d_translator[self.model.names[int(c)]])
 
         img = annotator.result()
 
@@ -35,8 +48,8 @@ class NeuralNetwork(INeuralNetwork):
 
         for cno in clist:
             if self.model.names[int(cno)] in cls.keys():
-                cls[self.model.names[int(cno)]] +=1
+                cls[d_translator[self.model.names[int(cno)]]] +=1
             else:
-                cls[self.model.names[int(cno)]]=1
+                cls[d_translator[self.model.names[int(cno)]]]=1
 
         return [(k,v) for k,v in cls.items()]
