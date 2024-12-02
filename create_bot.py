@@ -1,5 +1,6 @@
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from Data_base.DataBase import DataBase
 
 
 class BotCreator:
@@ -26,3 +27,4 @@ class BotCreator:
 
 creator = BotCreator('Token')
 ans = creator.create()
+database = DataBase(path='cost.json')

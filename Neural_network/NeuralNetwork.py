@@ -5,16 +5,16 @@ import os
 from  Neural_network.Anatator import MyAnnotator
 
 
-d_translator = {'Baked chicken': 'Запеченная курица',
-     'Black bread': 'Чёрный хлеб',
-     'Cheese soup' : 'Сырный суп',
-     'Compote' : 'Компот',
-     'Fish cutlet': 'Рыбные котлеты',
-     'Kharcho':  'Харчо',
+d_translator = {'Baked chicken': "Запеченная курица",
+     'Black bread': "Чёрный хлеб",
+     'Cheese soup' : "Сырный суп",
+     'Compote' : "Компот",
+     'Fish cutlet': "Рыбные котлеты",
+     'Kharcho':  "Харчо",
      'Mashed potatoes': "Картофельное пюре",
-     'Meat cutlet': 'Мясные котлеты',
-     'Rice': 'Рис',
-     'White bread': 'Белый хлеб',
+     'Meat cutlet': "Мясные котлеты",
+     'Rice': "Рис",
+     'White bread': "Белый хлеб",
      }
 
 

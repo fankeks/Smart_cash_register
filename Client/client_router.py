@@ -5,6 +5,7 @@ import os
 
 from Client.client_keyboard.client_kb import client_kb
 from Photo_handler.PhotoHandler import PhotoHandler
+from create_bot import database
 
 
 PATH_WORKSPACE = 'Workspace'
@@ -49,8 +50,13 @@ async def save_photo(message: Message):
     ans = await process.join()
 
     ans_message = ''
+    cost = 0
     for product in ans:
-        ans_message += f'{product[0]} - {product[1]} шт.\n'
+        c = await database.get_cost(product[0])
+        c *= product[1]
+        ans_message += f'{product[0]} - {product[1]} шт. (стоимость: {c} руб.)\n'
+        cost += c
+    ans_message += f'Общая стоимость: {cost} руб.'
 
     # TODO:
     # Добавить базу данных с ценами на продукты
