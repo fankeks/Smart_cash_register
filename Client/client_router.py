@@ -54,16 +54,24 @@ async def save_photo(message: Message):
     for product in ans:
         c = await database.get_cost(product[0])
         c *= product[1]
-        ans_message += f'{product[0]} - {product[1]} шт. (стоимость: {c} руб.)\n'
+
+        s3 = f'{c} руб.'
+        s3 += " " * (4 - len(s3))
+        s1 = f"{product[0]}"
+        s1 += " " * (17 - len(s1))
+        s2 = f"{product[1]} шт."
+        s2 += " " * (4 - len(s2))
+        ans_message += f"{s1} {s2} {s3}\n"
         cost += c
-    ans_message += f'Общая стоимость: {cost} руб.'
+    ans_message += f'Общая стоимость:        {cost} руб.'
+    print(ans_message)
 
     # TODO:
     # Добавить базу данных с ценами на продукты
 
     photo = open(name, 'rb')
     await message.answer_photo(photo)
-    await message.answer(f"{ans_message}")
+    await message.answer(f"<code>{ans_message}</code>", parse_mode='HTML')
     os.remove(name)
 
 
