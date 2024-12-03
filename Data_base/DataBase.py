@@ -1,8 +1,8 @@
-import asyncio
+from Data_base.IDataBase import IDataBase
 import json
 
 
-class DataBase:
+class DataBase(IDataBase):
     def __init__(self, path=''):
         self.__path = path
 
